@@ -18,6 +18,13 @@ body {
   color: goldenrod;
 }
 
+.success {
+  background-color: green;
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .inputForm {
   width: 60%;
   /* border: 2px solid red; */

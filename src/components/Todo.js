@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import List from '../components/List';
 
@@ -13,6 +13,8 @@ const Todo = () => {
     const [add, setAdd] = useState([]);
     const [validation, setValidation] = useState('');
 
+    const alertMessage = useRef();
+
     const setData = (e) => {
         setTodo(e.target.value);
     }
@@ -26,6 +28,8 @@ const Todo = () => {
             
             setAdd([...add, todo]);
             setTodo("");
+            
+            alertMessage.current.style.display = "block";
         }
 
     }
@@ -38,6 +42,17 @@ const Todo = () => {
         setAdd(filtered);
 
     }
+
+    useEffect(()=> {
+        alertMessage.current.style.display = "none";
+    },[])
+
+    useEffect(()=> {
+        setTimeout(()=>{
+            alertMessage.current.style.display = "none";
+        },3000)
+    },[add])
+    
 
 
     return (
@@ -60,6 +75,8 @@ const Todo = () => {
                             </Button>
                         </Tooltip>
                     </div>
+
+                    <p ref={alertMessage} className="success">Todo is added...</p>
 
                     {/* show data  */}
                     <div className='listContainer'>
