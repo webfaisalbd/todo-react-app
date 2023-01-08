@@ -1,8 +1,25 @@
 import React from 'react'
 
-const List = () => {
+import Button from '@mui/material/Button';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import Tooltip from '@mui/material/Tooltip';
+
+const List = ({ lists,deleteItems }) => {
   return (
-    <div>List</div>
+    <div>
+      {
+        lists.map((list, index) => {
+          return <div className='inputDiv' key={index}>
+            <div className='singleList' >{list}</div>
+            <Tooltip title="Delete" placement='right-end'>
+              <Button variant='contained' color='error' onClick={()=> deleteItems(index)}>
+                <DeleteForeverIcon />
+              </Button>
+            </Tooltip>
+          </div>
+        })
+      }
+    </div>
   )
 }
 
